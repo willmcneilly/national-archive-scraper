@@ -1,0 +1,4 @@
+# Logfile created on 2014-01-25 17:03:33 +0000 by logger.rb/36483
+I, [2014-01-25T17:03:33.692151 #98594]  INFO -- : 0:  mini_portile (0.5.2) from /Users/willmcneilly/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/specifications/mini_portile-0.5.2.gemspec
+I, [2014-01-25T17:03:33.692535 #98594]  INFO -- : 0:  nokogiri (1.6.1) from /Users/willmcneilly/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/specifications/nokogiri-1.6.1.gemspec
+I, [2014-01-25T17:03:33.692778 #98594]  INFO -- : 0:  bundler (1.5.1) from /Users/willmcneilly/.rbenv/versions/2.0.0-p247/lib/ruby/gems/2.0.0/specifications/bundler-1.5.1.gemspec

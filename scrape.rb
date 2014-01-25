@@ -4,24 +4,30 @@ require 'nokogiri'
 require 'open-uri'  
 
 @per_page = 100
-@max_pages = 2
+@max_pages = 7
 
 
 
 def url_for_page(options={})
+  puts options
   base_url = "http://www.census.nationalarchives.ie/search/results.jsp?"
 
   params = {
     "census_year" => "1901",
     "pageSize" => @per_page,
     "search" => "Search",
+    "surname" => "mcneilly",
+    "pager.offset" => options["pager.offset"]
   }
 
-  params.merge("offset" => options[:offset]) if options.has_key?(:offset)
+ # pageOffset = {}
+
+ # params.merge(pageOffset)
+
+  puts params
 
   url_safe_params = URI.escape(params.collect{|k,v| "#{k}=#{v}"}.join('&'))
   url = "#{base_url}#{url_safe_params}"
-  puts url
   return url
 end
 
@@ -61,7 +67,7 @@ doc, people = open_page(url)
 summary = doc.at_css("h1 .short").text
 total = (summary.match(/of ([\d]*)/)[1]).to_i
 puts "#{total} people"
-pages = total/@per_page
+pages = (total/@per_page) + 1
 puts "#{pages} pages"
 offset = 0
 page = 1
@@ -69,10 +75,12 @@ page = 1
 
 pages.times do |page|
   break unless page <= @max_pages
-  url = url_for_page(:offset => page*@per_page)
+  puts page * @per_page
+  url = url_for_page({"pager.offset" => page*@per_page})
+  puts url
   doc, people = open_page(url)
   @people.concat people
 end
 
-puts @people.size
+#puts @people.size
 puts @people.inspect
